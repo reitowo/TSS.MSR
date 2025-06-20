@@ -424,7 +424,7 @@ TpmAttiComputeSoftPCRs(
         goto Cleanup;
     }
 
-    if (FAILED(hr = WbclApiInitIterator(pbEventLog, 
+    if (FAILED(hr = WbclApiInitIterator2(pbEventLog, 
                                         cbEventLog, 
                                         &wbclIterator)))
     {
@@ -453,9 +453,9 @@ TpmAttiComputeSoftPCRs(
     }
 
     for (; hr == S_OK;
-           hr = WbclApiMoveToNextElement(&wbclIterator))
+           hr = WbclApiMoveToNextElement2(&wbclIterator))
     {
-        hr = WbclApiGetCurrentElement(
+        hr = WbclApiGetCurrentElement2(
                 &wbclIterator, 
                 &PcrIndex, 
                 &EventType,
@@ -483,7 +483,7 @@ TpmAttiComputeSoftPCRs(
         //   UINT8  StartupLocality;
         // } TCG_EfiStartupLocalityEvent;
         //
-        // where Signature is a null terminated ASCII string “StartupLocality”
+        // where Signature is a null terminated ASCII string ï¿½StartupLocalityï¿½
         // or {0x53 0x74 0x61 0x72 0x74 0x75 0x70 0x4C 0x6F 0x63 0x61 0x6C 0x69 
         // 0x74 0x79 0x00}
         if (EventType == SIPAEV_NO_ACTION &&
@@ -632,7 +632,7 @@ TpmAttiFilterLog(
     // Make OACR happy
     *pcbResult = 0;
 
-    if (FAILED(hr = WbclApiInitIterator(pbEventLog, 
+    if (FAILED(hr = WbclApiInitIterator2(pbEventLog, 
                                         cbEventLog, 
                                         &wbclIterator)))
     {
@@ -650,9 +650,9 @@ TpmAttiFilterLog(
 
     // 1st pass to find out how much space we will need
     for (; hr == S_OK;
-           hr = WbclApiMoveToNextElement(&wbclIterator))
+           hr = WbclApiMoveToNextElement2(&wbclIterator))
     {
-        hr = WbclApiGetCurrentElement(
+        hr = WbclApiGetCurrentElement2(
                 &wbclIterator,
                 &pcrIndex,
                 &eventType,
@@ -694,7 +694,7 @@ TpmAttiFilterLog(
         goto Cleanup;
     }
 
-    if (FAILED(hr = WbclApiInitIterator(pbEventLog, 
+    if (FAILED(hr = WbclApiInitIterator2(pbEventLog, 
                                         cbEventLog, 
                                         &wbclIterator)))
     {
@@ -723,9 +723,9 @@ TpmAttiFilterLog(
 
     // 2nd pass to copy the entries
     for (; hr == S_OK;
-         hr = WbclApiMoveToNextElement(&wbclIterator))
+         hr = WbclApiMoveToNextElement2(&wbclIterator))
     {
-        hr = WbclApiGetCurrentElement(
+        hr = WbclApiGetCurrentElement2(
                 &wbclIterator,
                 &pcrIndex,
                 &eventType,
@@ -1119,7 +1119,7 @@ TpmAttGeneratePlatformAttestation(
         goto Cleanup;
     }
 
-    if (FAILED(hr = WbclApiInitIterator(pbLog, cbLog, &wbclIterator)))
+    if (FAILED(hr = WbclApiInitIterator2(pbLog, cbLog, &wbclIterator)))
     {
         goto Cleanup;
     }
@@ -2039,7 +2039,7 @@ TpmAttCreateAttestationfromLog(
         goto Cleanup;
     }
 
-    if (FAILED(hr = WbclApiInitIterator(pbLog, 
+    if (FAILED(hr = WbclApiInitIterator2(pbLog, 
                                         cbLog, 
                                         &wbclIterator)))
     {
@@ -2048,9 +2048,9 @@ TpmAttCreateAttestationfromLog(
 
     // parse the log
     for (; hr == S_OK;
-           hr = WbclApiMoveToNextElement(&wbclIterator))
+           hr = WbclApiMoveToNextElement2(&wbclIterator))
     {
-        hr = WbclApiGetCurrentElement(
+        hr = WbclApiGetCurrentElement2(
                 &wbclIterator,
                 &pcrIndex,
                 &eventType,
@@ -2399,7 +2399,7 @@ TpmAttGetPlatformAttestationProperties(
                                    pAttestation->cbSignature];
     cbPlatformLog = pAttestation->cbLog;
 
-    if (FAILED(hr = WbclApiInitIterator(pbPlatformLog, 
+    if (FAILED(hr = WbclApiInitIterator2(pbPlatformLog, 
                                         cbPlatformLog, 
                                         &wbclIterator)))
     {
@@ -2417,9 +2417,9 @@ TpmAttGetPlatformAttestationProperties(
 
     // 2nd pass to copy the entries
     for (; hr == S_OK;
-           hr = WbclApiMoveToNextElement(&wbclIterator))
+           hr = WbclApiMoveToNextElement2(&wbclIterator))
     {
-        hr = WbclApiGetCurrentElement(
+        hr = WbclApiGetCurrentElement2(
                 &wbclIterator,
                 &pcrIndex,
                 &eventType,

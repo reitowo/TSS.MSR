@@ -511,7 +511,7 @@ Cleanup:
 //
 
 HRESULT
-WbclApiInitIterator(
+WbclApiInitIterator2(
     _In_bytecount_(logSize) PVOID  pLogBuffer,
     _In_                    UINT32 logSize,
     _Out_                   WBCL_Iterator* pWbclIterator
@@ -589,7 +589,7 @@ Return value:
     //
     // Extract information for the first event in the log.
     //
-    hr = WbclApiGetCurrentElement(pWbclIterator,
+    hr = WbclApiGetCurrentElement2(pWbclIterator,
         &pcrIndex,
         &eventType,
         NULL,
@@ -694,9 +694,9 @@ Return value:
 
             //
             // Move to the first log entry after the descriptor.
-            // WbclApiMoveToNextElement() does boundary checks.
+            // WbclApiMoveToNextElement2() does boundary checks.
             //
-            hr = WbclApiMoveToNextElement(pWbclIterator);
+            hr = WbclApiMoveToNextElement2(pWbclIterator);
             if (hr != S_OK)
             {
                 hr = HRESULT_FROM_WIN32(ERROR_INVALID_DATA);
@@ -710,7 +710,7 @@ Cleanup:
 }
 
 HRESULT
-WbclApiGetCurrentElement(
+WbclApiGetCurrentElement2(
     _In_            WBCL_Iterator* pWbclIterator,
     _Out_           UINT32* pcrIndex,
     _Out_           UINT32* eventType,
@@ -787,7 +787,7 @@ Cleanup:
 }
 
 HRESULT
-WbclApiMoveToNextElement(
+WbclApiMoveToNextElement2(
     _In_ WBCL_Iterator* pWbclIterator)
 /*++
 
