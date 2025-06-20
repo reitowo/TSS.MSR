@@ -171,6 +171,7 @@ typedef struct _PCP_KEY_ATTESTATION_BLOB {
 #define TPM_VOLATILE_CONFIG_DATA L"System\\CurrentControlSet\\Control\\IntegrityServices"
 
 #define TPM_AVAILABLE_PLATFORM_PCRS (24)
+#include <wbcl.h>
 
 #if defined(__cplusplus)
 extern "C" {
